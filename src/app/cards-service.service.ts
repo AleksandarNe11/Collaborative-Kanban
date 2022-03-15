@@ -1,3 +1,4 @@
+import { Card } from './pages/board-page/cards';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -20,6 +21,16 @@ export class CardsServiceService {
         })
       )
   }
+
+  addCard(card: Card) { 
+    return this.http.post(`${this.baseURL}/addCard`, {data: card}).pipe(
+      map((res: any) => { 
+        return res['data'];
+      })
+    )
+  }
+
+
 
   
   
