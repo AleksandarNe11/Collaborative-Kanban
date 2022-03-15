@@ -1,0 +1,25 @@
+// global styles 
+// changing bulma 
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;900&display=swap');
+
+$family-sans-serif: "Rubik", sans-serif; 
+
+$control-border-width: 2px; 
+$input-border-color: transparent; 
+$input-shadow: none; 
+
+/* GLOBAL STYLES */ 
+html, body { 
+    height: 100% 
+
+}
+
+html { 
+    background-image: url(./assets/Trianglify-background.png);
+    background-size: cover; 
+
+    overflow-y: auto !important; 
+}
+
