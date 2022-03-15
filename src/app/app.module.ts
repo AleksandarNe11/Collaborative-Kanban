@@ -7,6 +7,8 @@ import { BoardPageComponent } from './pages/board-page/board-page.component';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
+import { HttpClientModule } from '@angular/common/http'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +17,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   imports: [
     BrowserModule,
     AppRoutingModule, 
-    DragDropModule
+    DragDropModule, 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

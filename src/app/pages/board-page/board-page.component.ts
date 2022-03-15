@@ -1,5 +1,9 @@
+import { CardsServiceService } from './../../cards-service.service';
 import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+
+import { Card } from './cards';
+
 
 @Component({
   selector: 'app-board-page',
@@ -8,10 +12,13 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 })
 export class BoardPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cardsService: CardsServiceService) {}
 
   ngOnInit(): void {
+    this.cardsService.getAll(1);
   }
+
+  cards: Card[] = []; 
 
   ideas = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
 
