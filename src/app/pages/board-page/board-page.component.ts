@@ -1,11 +1,11 @@
 import { CardsServiceService } from './../../cards-service.service';
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { Card } from './cards';
-import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
 
@@ -16,14 +16,22 @@ import { NgForm } from '@angular/forms';
 })
 export class BoardPageComponent implements OnInit {
 
-  constructor(private cardsService: CardsServiceService) {}
+  constructor(
+    private cardsService: CardsServiceService, 
+    ) {}
 
   ngOnInit(): void {
     this.getCards();
     this.addCard();
   }
 
+  closeResult: string = "";
+
   boardId: number = 1;
+
+  open(): void { 
+    console.log("Opened Modal?");
+  }
 
   card: Card = {
     boardId: this.boardId, 
@@ -33,10 +41,12 @@ export class BoardPageComponent implements OnInit {
 
   cards: Card[] = [];
 
+
+  columns = ["Ideas", "Todos", "Done"]
+
   ideas: string[] = [];
 
   todos: string[] = [];
-
   done: string[] = [];
   
   columnName = {"IDEAS": this.ideas , "TODO" : this.todos, "DONE": this.done}; 
@@ -75,7 +85,8 @@ export class BoardPageComponent implements OnInit {
     }
     )
   }
-
+  
+  
   // {
   //   =>(data: Card[]) { 
   //     // super.this.cards = data; 
@@ -132,6 +143,18 @@ export class BoardPageComponent implements OnInit {
     }
   }
 
+  addCard() {
+    this.cardsService.addCard(this.card).subscribe((data: Card) => { 
+      this.cards.push(data); 
+      console.log(data);
+    })
+  }
+  
+  onTitleChange(event: string) { 
+    this.card.title = event; 
+    this.addCard();
+    console.log(event);
+  }
 
 }
 

@@ -1,0 +1,22 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Add Item</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="mb-3">
+          <label for="dateOfBirth">New Item</label>
+          <div class="input-group">
+            <input type="text" class="form-control border" placeholder="Sexy Item Here" [(ngModel)]="title" [ngModelOptions]="{standalone: true}">
+            {{title}}
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="submit()">Save</button>
+    </div>
+</ng-template>
+  
+<button class="btn btn-sm btn-success" (click)="open(content)">Add Item</button>
