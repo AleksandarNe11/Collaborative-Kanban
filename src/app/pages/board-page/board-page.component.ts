@@ -20,23 +20,26 @@ export class BoardPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCards();
+    this.addCard();
   }
 
   boardId: number = 1;
 
   card: Card = {
     boardId: this.boardId, 
-    title: "", 
-    columnName: "Ideas"
+    title: "Super Sex-y idea", 
+    columnName: "IDEA"
   };
 
-  cards: Card[] = []; 
+  cards: Card[] = [];
 
-  ideas = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  ideas: string[] = [];
 
-  todos = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  todos: string[] = [];
 
   done: string[] = [];
+  
+  columnName = {"IDEAS": this.ideas , "TODO" : this.todos, "DONE": this.done}; 
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -65,19 +68,53 @@ export class BoardPageComponent implements OnInit {
    * each of the subarrays 
    */
   getCards() { 
-    this.cardsService.getAll(this.boardId).subscribe({
-      next(data: Card[]) { 
-        super.this.cards = data; 
-        console.log(super.this.cards);
-      }, 
-      error(msg) { 
-        console.log("Error retrieving cards: " + msg);
-      }
+    // console.log(this.cards);
+    this.cardsService.getAll(this.boardId).subscribe((data: Card[]) => { 
+      this.cards = data; 
+      this.splitData(data);
     }
     )
   }
 
-  addCard(f: NgForm) {
+  // {
+  //   =>(data: Card[]) { 
+  //     // super.this.cards = data; 
+  //     console.log("Next");
+  //     console.log(super.this.cards);
+  //   }, 
+  //   error(msg) { 
+  //     console.log("Error retrieving cards: " + msg);
+  //   }
+  // }
+
+  splitData(data: any){
+    console.log(data);
+    let column: string = "";
+    for(let i = 0; i < data.length;i++){
+      
+      column = data[i].ColoumnName;
+
+      switch(column) {
+        case "IDEAS":
+          // code block
+          this.ideas.push(data[i].Title);
+          break;
+        case "TODO":
+          // code block
+          this.todos.push(data[i].Title);
+          break;
+        case "DONE":
+          // code block
+          this.done.push(data[i].Title);
+          break;
+      } 
+    }
+    console.log(this.ideas);
+    console.log(this.todos);
+    console.log(this.done);
+  }
+
+  addCard() {
 
     // confirm card.title is populated w/ a value
     if (this.card.title !== "") { 
@@ -86,7 +123,7 @@ export class BoardPageComponent implements OnInit {
       this.cardsService.addCard(this.card).subscribe({
         next(res: Card) {
           super.this.cards.push(res);
-          f.reset(); 
+          // f.reset(); 
         }, 
         error(err) { 
           console.log("Post Error: " + err);
