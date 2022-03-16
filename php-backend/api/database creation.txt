@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `kanban_db`.`CARDS` (
   `CardID` INT NOT NULL AUTO_INCREMENT,
   `BoardID` INT NOT NULL,
   `Title` VARCHAR(100) NOT NULL DEFAULT 'BLANK',
-  `ColoumnName` VARCHAR(45) NOT NULL DEFAULT 'IDEAS',
+  `ColumnName` VARCHAR(45) NOT NULL DEFAULT 'IDEAS',
   PRIMARY KEY (`CardID`),
   UNIQUE INDEX `ID_UNIQUE` (`CardID` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -20,23 +20,23 @@ USE kanban_db;
 
 #------- Step 4 -------#
 
-INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColoumnName`) VALUES (1, 1, 'Paint', 'TODO');
+INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (1, 1, 'Paint', 'TODO');
 
-INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColoumnName`) VALUES (2, 1, 'Homework', 'TODO');
+INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (2, 1, 'Homework', 'TODO');
 
-INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColoumnName`) VALUES (3, 1, 'Walk the dog', 'TODO');
+INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (3, 1, 'Walk the dog', 'TODO');
 
-INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColoumnName`) VALUES (4, 1, 'Build Dog house', 'IDEAS');
+INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (4, 1, 'Build Dog house', 'IDEAS');
 
-INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColoumnName`) VALUES (5, 1, 'Make a hot dog', 'IDEAS');
+INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (5, 1, 'Make a hot dog', 'IDEAS');
 
-INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColoumnName`) VALUES (6, 1, 'Create website', 'IDEAS');
+INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (6, 1, 'Create website', 'IDEAS');
 
-INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColoumnName`) VALUES (7, 1, 'Woke up', 'DONE');
+INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (7, 1, 'Woke up', 'DONE');
 
-INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColoumnName`) VALUES (8, 1, 'Finsih presentation ', 'DONE');
+INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (8, 1, 'Finsih presentation ', 'DONE');
 
-INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColoumnName`) VALUES (9, 1, 'Sell old bike', 'DONE');
+INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (9, 1, 'Sell old bike', 'DONE');
 
 #------- Step 5 -------#
 
