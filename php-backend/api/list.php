@@ -5,11 +5,12 @@ require 'connect.php';
 define('CARD_ID', "CardID");
 define('BOARD_ID', 'BoardID');
 define('TITLE', 'Title');
-define('COLUMN_NAME', 'ColumnName');
+define('COLUMN_NAME', 'ColoumnName');
 
 $cards = []; 
 
-$sql = "SELECT " . CARD_ID . ", " . BOARD_ID . "FROM CARDS"; 
+// $sql = "SELECT " . CARD_ID . ", " . BOARD_ID . "FROM CARDS"; 
+$sql = "SELECT * FROM CARDS";
 
 if($result = mysqli_query($con, $sql)) { 
     $cr = 0; 
