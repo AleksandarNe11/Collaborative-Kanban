@@ -1,3 +1,5 @@
+
+
 // global styles 
 // changing bulma 
 
@@ -17,9 +19,8 @@ html, body {
 }
 
 html { 
-    background-image: url(./assets/Trianglify-background.png);
-    background-size: cover; 
+    background-image: url(./assets/Trianglify-background.png) !important;
+    background-size: cover !important; 
 
     overflow-y: auto !important; 
 }
-

@@ -30,10 +30,5 @@ export class CardsServiceService {
     )
   }
 
-
-
   
-  
-
-
 }

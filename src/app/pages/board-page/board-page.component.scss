@@ -2,6 +2,8 @@
     display: flex; 
     flex-direction: column; 
     height: 100%;
+    background-image: url(../../../assets/Trianglify-background.png) !important;
+    background-size: cover !important; 
 }
 
 .kanban-board { 

@@ -1,11 +1,11 @@
 import { CardsServiceService } from './../../cards-service.service';
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { Card } from './cards';
-import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
 
@@ -16,13 +16,21 @@ import { NgForm } from '@angular/forms';
 })
 export class BoardPageComponent implements OnInit {
 
-  constructor(private cardsService: CardsServiceService) {}
+  constructor(
+    private cardsService: CardsServiceService, 
+    ) {}
 
   ngOnInit(): void {
     this.getCards();
   }
 
+  closeResult: string = "";
+
   boardId: number = 1;
+
+  open(): void { 
+    console.log("Opened Modal?");
+  }
 
   card: Card = {
     boardId: this.boardId, 
@@ -30,12 +38,14 @@ export class BoardPageComponent implements OnInit {
     columnName: "Ideas"
   };
 
-  cards: Card[] = []; 
+  cards: Card[] = [];
 
+  columns = ["Ideas", "Todos", "Done"]
+
+  ideaTitle = "";
+  
   ideas = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
   todos = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-
   done: string[] = [];
 
   drop(event: CdkDragDrop<string[]>) {
@@ -65,36 +75,26 @@ export class BoardPageComponent implements OnInit {
    * each of the subarrays 
    */
   getCards() { 
-    this.cardsService.getAll(this.boardId).subscribe({
-      next(data: Card[]) { 
-        super.this.cards = data; 
-        console.log(super.this.cards);
-      }, 
-      error(msg) { 
-        console.log("Error retrieving cards: " + msg);
-      }
+    this.cardsService.getAll(this.boardId).subscribe((data: Card[]) => { 
+      this.cards = data; 
+      console.log(data);
     }
     )
   }
 
-  addCard(f: NgForm) {
 
-    // confirm card.title is populated w/ a value
-    if (this.card.title !== "") { 
-      // call the cardsService and await response of 
-      // Card object to append to cards array 
-      this.cardsService.addCard(this.card).subscribe({
-        next(res: Card) {
-          super.this.cards.push(res);
-          f.reset(); 
-        }, 
-        error(err) { 
-          console.log("Post Error: " + err);
-        }
-      })
-    }
+  addCard() {
+    this.cardsService.addCard(this.card).subscribe((data: Card) => { 
+      this.cards.push(data); 
+      console.log(data);
+    })
   }
-
+  
+  onTitleChange(event: string) { 
+    this.card.title = event; 
+    this.addCard();
+    console.log(event);
+  }
 
 }
 
