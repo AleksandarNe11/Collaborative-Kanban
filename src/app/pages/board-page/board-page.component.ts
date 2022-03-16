@@ -102,7 +102,7 @@ export class BoardPageComponent implements OnInit {
     let column: string = "";
     for(let i = 0; i < data.length;i++){
       
-      column = data[i].ColoumnName;
+      column = data[i].ColumnName;
 
       switch(column) {
         case "IDEAS":

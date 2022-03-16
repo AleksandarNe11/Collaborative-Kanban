@@ -1,9 +1,11 @@
 
-#------- Step 1 -------#
+-- You can just copy all this code and run it at once 
+-- since I have comment out the useless lines
+-- ------- Step 1 -------
 
 CREATE DATABASE kanban_db;
 
-#------- Step 2 -------#
+-- ------- Step 2 -------
 
 CREATE TABLE IF NOT EXISTS `kanban_db`.`CARDS` (
   `CardID` INT NOT NULL AUTO_INCREMENT,
@@ -14,11 +16,11 @@ CREATE TABLE IF NOT EXISTS `kanban_db`.`CARDS` (
   UNIQUE INDEX `ID_UNIQUE` (`CardID` ASC) VISIBLE)
 ENGINE = InnoDB;
 
-#------- Step 3 -------#
+-- ------- Step 3 -------
 
 USE kanban_db;
 
-#------- Step 4 -------#
+-- ------- Step 4 -------
 
 INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (1, 1, 'Paint', 'TODO');
 
@@ -38,6 +40,6 @@ INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VAL
 
 INSERT INTO `kanban_db`.`Cards` (`CardID`, `BoardID`, `Title`, `ColumnName`) VALUES (9, 1, 'Sell old bike', 'DONE');
 
-#------- Step 5 -------#
+-- ------- Step 5 -------
 
 SELECT * FROM cards;
