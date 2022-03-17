@@ -1,6 +1,6 @@
 export interface Card { 
-    cardId?: number; 
-    boardId?: number; 
-    title: string; 
-    columnName: string; 
+    CardID?: number; 
+    BoardID?: number; 
+    Title: string; 
+    ColoumnName: string; 
 }

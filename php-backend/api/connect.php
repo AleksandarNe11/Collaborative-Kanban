@@ -2,7 +2,7 @@
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', 'CP476login2022');
+define('DB_PASS', 'hachibi123');
 define('DB_NAME', 'kanban_db');
 
 function connect() { 
