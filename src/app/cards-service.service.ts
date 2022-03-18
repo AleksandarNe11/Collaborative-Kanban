@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 })
 export class CardsServiceService {
 
-  baseURL = 'http://localhost:88/476_php'; 
+  baseURL = 'http://localhost:88/api'; 
 
   constructor(private http: HttpClient) { }
 

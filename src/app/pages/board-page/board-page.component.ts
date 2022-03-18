@@ -22,7 +22,6 @@ export class BoardPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCards();
-    this.addCard();
   }
 
   closeResult: string = "";
@@ -36,7 +35,7 @@ export class BoardPageComponent implements OnInit {
   card: Card = {
     boardId: this.boardId, 
     title: "Super Sex-y idea", 
-    columnName: "IDEA"
+    columnName: "TODO"
   };
 
   cards: Card[] = [];
@@ -103,7 +102,7 @@ export class BoardPageComponent implements OnInit {
     let column: string = "";
     for(let i = 0; i < data.length;i++){
       
-      column = data[i].ColoumnName;
+      column = data[i].ColumnName;
 
       switch(column) {
         case "IDEAS":
@@ -126,28 +125,11 @@ export class BoardPageComponent implements OnInit {
   }
 
   addCard() {
-
-    // confirm card.title is populated w/ a value
-    if (this.card.title !== "") { 
-      // call the cardsService and await response of 
-      // Card object to append to cards array 
-      this.cardsService.addCard(this.card).subscribe({
-        next(res: Card) {
-          super.this.cards.push(res);
-          // f.reset(); 
-        }, 
-        error(err) { 
-          console.log("Post Error: " + err);
-        }
-      })
-    }
-  }
-
-  addCard() {
     this.cardsService.addCard(this.card).subscribe((data: Card) => { 
       this.cards.push(data); 
       console.log(data);
-    })
+      this.splitData(data);
+      })
   }
   
   onTitleChange(event: string) { 
