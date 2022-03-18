@@ -34,9 +34,9 @@ export class BoardPageComponent implements OnInit {
   }
 
   card: Card = {
-    boardId: this.boardId, 
-    title: "Super Sex-y idea", 
-    columnName: "TODO"
+    BoardID: this.boardId, 
+    Title: "Super Sex-y idea", 
+    ColumnName: "TODO"
   };
 
   cards: Card[] = [];
@@ -63,7 +63,7 @@ export class BoardPageComponent implements OnInit {
 
       let card = this.getCardFromList(event.container.data, event.currentIndex);
       
-      card.ColoumnName = this.getListNameFromDropContainerId(event);
+      card.ColumnName = this.getListNameFromDropContainerId(event);
       
       console.log(card);
       this.updateCard(card);
