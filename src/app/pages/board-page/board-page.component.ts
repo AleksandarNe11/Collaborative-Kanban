@@ -34,15 +34,15 @@ export class BoardPageComponent implements OnInit {
   }
 
   card: Card = {
-    boardId: this.boardId, 
-    title: "Super Sex-y idea", 
-    columnName: "TODO"
+    BoardID: this.boardId, 
+    Title: "Super Sex-y idea", 
+    ColumnName: "TODO"
   };
 
   cards: Card[] = [];
 
 
-  columns = ["Ideas", "Todos", "Done"]
+  columns = ["IDEAS", "TODOS", "DONE"]
 
   ideas: string[] = [];
   todos: string[] = [];
@@ -63,7 +63,7 @@ export class BoardPageComponent implements OnInit {
 
       let card = this.getCardFromList(event.container.data, event.currentIndex);
       
-      card.ColoumnName = this.getListNameFromDropContainerId(event);
+      card.ColumnName = this.getListNameFromDropContainerId(event);
       
       console.log(card);
       this.updateCard(card);
@@ -73,7 +73,9 @@ export class BoardPageComponent implements OnInit {
   getListNameFromDropContainerId(event: CdkDragDrop<string[]>): string { 
     let id: string = event.container.id; 
 
-    let strArray: string[] = id.split("-"); 
+    let strArray: string[] = id.split("-");
+    
+    console.log(strArray);
 
     return this.columns[parseInt(strArray[3])];
   }
@@ -169,6 +171,16 @@ export class BoardPageComponent implements OnInit {
     }
     return this.cards[j];
   }
+
+  deleteCar(id: number) {
+    this.cardsService.delete(id).subscribe(
+      (res) => {
+        this.cards = this.cards.filter(function (item) {
+          return item['CardID'];
+        });
+      }
+    );
+}
 
 }
 
