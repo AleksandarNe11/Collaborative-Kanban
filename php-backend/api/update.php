@@ -10,13 +10,13 @@ if(isset($postdata) && !empty($postdata))
   $request = json_decode($postdata);
     
   // Sanitize.
-  $CardID    = mysqli_real_escape_string($con, (int)$request->data->CardID);
-  $BoardID = mysqli_real_escape_string($con, trim($request->data->BoardID));
-  $Title = mysqli_real_escape_string($con, (int)$request->data->Title);
-  $ColoumnName = mysqli_real_escape_string($con, (int)$request->data->ColoumnName);
+  $CardID    = mysqli_real_escape_string($con, (int)$request->{"data"}->{"CardID"});
+  $BoardID = mysqli_real_escape_string($con, trim($request->{"data"}->{"BoardID"}));
+  $Title = mysqli_real_escape_string($con, (int)$request->{"data"}->{"Title"});
+  $ColumnName = mysqli_real_escape_string($con, $request->{"data"}->{"ColumnName"});
 
   // Update.
-  $sql = "UPDATE `CARDS` SET `ColoumnName`='$ColoumnName' WHERE `BoardID` = '{$BoardID}', `CardID` = '{$CardID}',  LIMIT 1";
+  $sql = "UPDATE `CARDS` SET `ColumnName`='$ColumnName' WHERE `BoardID` = {$BoardID} AND `CardID` = {$CardID}";
 
   if(mysqli_query($con, $sql))
   {
