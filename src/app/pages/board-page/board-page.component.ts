@@ -7,6 +7,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Card } from './cards';
 import { NgForm } from '@angular/forms';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Component({
@@ -44,7 +45,6 @@ export class BoardPageComponent implements OnInit {
   columns = ["Ideas", "Todos", "Done"]
 
   ideas: string[] = [];
-
   todos: string[] = [];
   done: string[] = [];
   
@@ -53,9 +53,6 @@ export class BoardPageComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-
-      console.log(event);
-      console.log("same list drop");
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -64,9 +61,21 @@ export class BoardPageComponent implements OnInit {
         event.currentIndex,
       );
 
-      console.log(this.ideas);
-      console.log(this.todos);
+      let card = this.getCardFromList(event.container.data, event.currentIndex);
+      
+      card.ColoumnName = this.getListNameFromDropContainerId(event);
+      
+      console.log(card);
+      this.updateCard(card);
     }
+  }
+
+  getListNameFromDropContainerId(event: CdkDragDrop<string[]>): string { 
+    let id: string = event.container.id; 
+
+    let strArray: string[] = id.split("-"); 
+
+    return this.columns[parseInt(strArray[3])];
   }
 
   /**
@@ -124,7 +133,8 @@ export class BoardPageComponent implements OnInit {
     console.log(this.done);
   }
 
-  addCard() {
+
+  addCard(): void {
     this.cardsService.addCard(this.card).subscribe((data: Card) => { 
       this.cards.push(data); 
       console.log(data);
@@ -132,10 +142,32 @@ export class BoardPageComponent implements OnInit {
       })
   }
   
-  onTitleChange(event: string) { 
-    this.card.title = event; 
+  onTitleChange(event: string): void { 
+    this.card.Title = event; 
     this.addCard();
-    console.log(event);
+
+  }
+
+  updateCard(card: Card) {
+
+    this.cardsService
+      .update(card)
+      .subscribe(
+        (res) => {
+          
+        }
+      );
+  }
+
+  getCardFromList(list: string[], index: number): Card { 
+    let title: string = list[index];
+    let j: number = -1; 
+    for(let i = 0; i < this.cards.length; i++) { 
+      if (this.cards[i].Title === title) { 
+        j = i; 
+      }
+    }
+    return this.cards[j];
   }
 
 }
