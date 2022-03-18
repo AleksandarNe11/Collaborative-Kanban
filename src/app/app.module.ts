@@ -11,12 +11,14 @@ import { FormsModule } from '@angular/forms';
 
 import { CardPopUpComponent } from './pages/card-pop-up/card-pop-up.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LandingpageComponent } from './landingpage/landingpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardPageComponent,
-    CardPopUpComponent
+    CardPopUpComponent,
+    LandingpageComponent
   ],
   imports: [
     BrowserModule,
