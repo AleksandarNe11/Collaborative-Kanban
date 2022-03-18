@@ -23,7 +23,6 @@ export class BoardPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCards();
-    this.addCard();
   }
 
   closeResult: string = "";
@@ -35,9 +34,9 @@ export class BoardPageComponent implements OnInit {
   }
 
   card: Card = {
-    BoardID: this.boardId, 
-    Title: "Super Sex-y idea", 
-    ColoumnName: "IDEA"
+    boardId: this.boardId, 
+    title: "Super Sex-y idea", 
+    columnName: "TODO"
   };
 
   cards: Card[] = [];
@@ -112,7 +111,7 @@ export class BoardPageComponent implements OnInit {
     let column: string = "";
     for(let i = 0; i < data.length;i++){
       
-      column = data[i].ColoumnName;
+      column = data[i].ColumnName;
 
       switch(column) {
         case "IDEAS":
@@ -134,11 +133,13 @@ export class BoardPageComponent implements OnInit {
     console.log(this.done);
   }
 
+
   addCard(): void {
     this.cardsService.addCard(this.card).subscribe((data: Card) => { 
       this.cards.push(data); 
       console.log(data);
-    })
+      this.splitData(data);
+      })
   }
   
   onTitleChange(event: string): void { 

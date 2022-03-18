@@ -38,7 +38,7 @@
                 >
                     <div class="column-title">
                         Todo
-                        <app-card-pop-up [column]="columns[1]"></app-card-pop-up>
+                        <app-card-pop-up [column]="columns[1]" (titleChange)="onTitleChange($event)"></app-card-pop-up>
                     </div>
                     <div class="task card" *ngFor="let item of todos" cdkDrag>
                         {{item}}
@@ -53,7 +53,7 @@
                 >
                     <div class="column-title">
                         Done
-                        <app-card-pop-up [column]="columns[2]"></app-card-pop-up>
+                        <app-card-pop-up [column]="columns[2]" (titleChange)="onTitleChange($event)"></app-card-pop-up>
                     </div>
                     <div class="task card" *ngFor="let item of done" cdkDrag>
                         {{item}}
