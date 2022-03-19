@@ -24,6 +24,9 @@ export class CardPopUpComponent implements OnInit {
 
   @Output() titleChange = new EventEmitter<string[]>(); 
 
+  // @Output() titleChange = new EventEmitter<string>(); 
+
+
   closeResult: string = "";
 
   constructor(
@@ -41,9 +44,17 @@ export class CardPopUpComponent implements OnInit {
     });
   }
 
+  // submit() { 
+  //   this.titleChange.emit(this.title);
+  //   this.title = "";
+  //   this.modalService.dismissAll();
+  // }
+
   submit() { 
+
     let str_array: string[] = [this.title, this.column]
     this.titleChange.emit(str_array);
+
     this.title = "";
     this.modalService.dismissAll();
   }

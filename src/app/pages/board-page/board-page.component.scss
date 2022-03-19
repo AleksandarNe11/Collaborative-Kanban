@@ -105,6 +105,16 @@
 transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+#trash-bin { 
+    position:absolute; 
+    left: 96%;
+    top: 92%;
+}
+
+#trash-bin:hover { 
+    background-color: red;
+}
+
 
 
 // Input Form Below here 
