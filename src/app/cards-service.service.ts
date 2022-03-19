@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 })
 export class CardsServiceService {
 
-   baseURL = 'http://localhost:88/api'; 
+   baseURL = 'http://localhost:80/api'; 
 
 
   constructor(private http: HttpClient) { }
@@ -17,7 +17,7 @@ export class CardsServiceService {
   getAll(BoardID: number) { 
     // return this.http.get(`${this.baseURL}/list/${BoardID}`)
     console.log(`${this.baseURL}/list`);
-    return this.http.get(`${this.baseURL}/list.php`)
+    return this.http.get(`${this.baseURL}/list`)
       .pipe(
         map((res: any) => { 
           console.log(res['data']);
@@ -27,7 +27,7 @@ export class CardsServiceService {
   }
 
   addCard(card: Card) { 
-    return this.http.post(`${this.baseURL}/addCard.php`, {data: card}).pipe(
+    return this.http.post(`${this.baseURL}/addCard`, {data: card}).pipe(
       map((res: any) => { 
         return res['data'];
       })
