@@ -18,7 +18,7 @@
                 cdkDropList
                 #ideasList="cdkDropList"
                 [cdkDropListData]="ideas"
-                [cdkDropListConnectedTo]="[todosList, doneList]"
+                [cdkDropListConnectedTo]="[todosList, doneList, trashBin]"
                 (cdkDropListDropped)="drop($event)"
                 >
                     <div class="column-title">
@@ -33,7 +33,7 @@
                 #todosList="cdkDropList"
                 cdkDropList 
                 [cdkDropListData]="todos"
-                [cdkDropListConnectedTo]="[ideasList, doneList]"
+                [cdkDropListConnectedTo]="[ideasList, doneList, trashBin]"
                 (cdkDropListDropped)="drop($event)"
                 >
                     <div class="column-title">
@@ -48,7 +48,7 @@
                 #doneList="cdkDropList"
                 cdkDropList 
                 [cdkDropListData]="done"
-                [cdkDropListConnectedTo]="[ideasList, todosList]"
+                [cdkDropListConnectedTo]="[ideasList, todosList, trashBin]"
                 (cdkDropListDropped)="drop($event)"
                 >
                     <div class="column-title">
@@ -61,8 +61,18 @@
                 </div>
             </div>
         </div>
+        <div class="board-column" id="trash-bin"
+            cdkDropList
+            #trashBin="cdkDropList"
+            [cdkDropListData]="trash"
+            [cdkDropListConnectedTo]="[ideasList, todosList, doneList]"
+            (cdkDropListDropped)="drop($event)"
+            >
+            <img src="../../../assets/TrashCan.png" height="50" width="50"> 
+        </div>
     </div>
 </div>
+
 
 <!-- <div class="form-popup" id="myForm">
     <form action="/action_page.php" class="form-container">
