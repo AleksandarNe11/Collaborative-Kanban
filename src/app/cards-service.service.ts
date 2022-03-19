@@ -1,6 +1,6 @@
 import { Card } from './pages/board-page/cards';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { map } from 'rxjs';
 
@@ -16,18 +16,19 @@ export class CardsServiceService {
 
   getAll(BoardID: number) { 
     // return this.http.get(`${this.baseURL}/list/${BoardID}`)
-    console.log(`${this.baseURL}/list`);
-    return this.http.get(`${this.baseURL}/list`)
+
+    return this.http.get(`${this.baseURL}/list.php`)
+
       .pipe(
         map((res: any) => { 
-          console.log(res['data']);
           return res['data'];
         })
       )
   }
 
   addCard(card: Card) { 
-    return this.http.post(`${this.baseURL}/addCard`, {data: card}).pipe(
+    
+    return this.http.post(`${this.baseURL}/addCard.php`, {data: card}).pipe(
       map((res: any) => { 
         return res['data'];
       })
@@ -35,6 +36,14 @@ export class CardsServiceService {
   }
 
   update(card: Card) {
-    return this.http.put(`${this.baseURL}/update`, { data: card });
+    return this.http.put(`${this.baseURL}/update.php`, { data: card });
   }
+
+  delete(CardID: number) {
+    const params = new HttpParams()
+      .set('id', CardID.toString());
+  
+    return this.http.delete(`${this.baseURL}/delete.php`, { params: params });
+  }
+
 }

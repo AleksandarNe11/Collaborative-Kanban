@@ -47,7 +47,7 @@ export class BoardPageComponent implements OnInit {
   }];
 
 
-  columns = ["Ideas", "Todos", "Done"]
+  columns = ["IDEAS", "TODO", "DONE"]
 
   ideas: string[] = ["Sexy Card"];
   todos: string[] = [];
@@ -72,8 +72,7 @@ export class BoardPageComponent implements OnInit {
       let card = this.getCardFromList(event.container.data, event.currentIndex);
       
       card.ColumnName = this.getListNameFromDropContainerId(event);
-      
-      console.log(event);
+
       this.updateCard(card);
     }
   }
@@ -81,7 +80,9 @@ export class BoardPageComponent implements OnInit {
   getListNameFromDropContainerId(event: CdkDragDrop<string[]>): string { 
     let id: string = event.container.id; 
 
-    let strArray: string[] = id.split("-"); 
+    let strArray: string[] = id.split("-");
+    
+
 
     return this.columns[parseInt(strArray[3])];
   }
@@ -115,7 +116,6 @@ export class BoardPageComponent implements OnInit {
   // }
 
   splitData(data: any){
-    console.log(data);
     let column: string = "";
     for(let i = 0; i < data.length;i++){
       
@@ -136,23 +136,23 @@ export class BoardPageComponent implements OnInit {
           break;
       } 
     }
-    console.log(this.ideas);
-    console.log(this.todos);
-    console.log(this.done);
+
   }
 
 
   addCard(): void {
-    this.cardsService.addCard(this.card).subscribe((data: Card) => { 
-      this.cards.push(data); 
-      console.log(data);
+    this.cardsService.addCard(this.card).subscribe((data: Card[]) => { 
+      this.cards.push(data[0]); 
+
       this.splitData(data);
       })
   }
   
   onTitleChange(event: string[]): void { 
     this.card.Title = event[0]; 
+
     this.card.ColumnName = event[1];
+
     this.addCard();
   }
 
@@ -177,6 +177,18 @@ export class BoardPageComponent implements OnInit {
     }
     return this.cards[j];
   }
+
+
+  deleteCar(id: number) {
+    this.cardsService.delete(id).subscribe(
+      (res) => {
+        this.cards = this.cards.filter(function (item) {
+          return item['CardID'];
+        });
+      }
+    );
+}
+
 
   // droppedIntoCan(event: CdkDragDrop<string[]>) { 
 //     let title = this.removeCardFromCards(event.container.data, event.currentIndex);
@@ -226,5 +238,6 @@ export class BoardPageComponent implements OnInit {
 
 //     array.splice(j, 1);
 //   }
+
 }
 
