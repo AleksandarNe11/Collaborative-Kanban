@@ -16,18 +16,15 @@ export class CardsServiceService {
 
   getAll(BoardID: number) { 
     // return this.http.get(`${this.baseURL}/list/${BoardID}`)
-    console.log(`${this.baseURL}/list`);
     return this.http.get(`${this.baseURL}/list.php`)
       .pipe(
         map((res: any) => { 
-          console.log(res['data']);
           return res['data'];
         })
       )
   }
 
   addCard(card: Card) { 
-    console.log(card); 
     
     return this.http.post(`${this.baseURL}/addCard.php`, {data: card}).pipe(
       map((res: any) => { 
