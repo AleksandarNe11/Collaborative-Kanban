@@ -81,9 +81,15 @@ export class BoardPageComponent implements OnInit {
     let id: string = event.container.id; 
 
     let strArray: string[] = id.split("-");
-    
+  
+    return this.columns[parseInt(strArray[3])];
+  }
 
+  getListNameFromPrevContainerId(event: CdkDragDrop<string[]>): string { 
+    let id: string = event.previousContainer.id; 
 
+    let strArray: string[] = id.split("-");
+  
     return this.columns[parseInt(strArray[3])];
   }
 
@@ -139,7 +145,6 @@ export class BoardPageComponent implements OnInit {
 
   }
 
-
   addCard(): void {
     this.cardsService.addCard(this.card).subscribe((data: Card[]) => { 
       this.cards.push(data[0]); 
@@ -179,65 +184,77 @@ export class BoardPageComponent implements OnInit {
   }
 
 
-  deleteCar(id: number) {
-    this.cardsService.delete(id).subscribe(
+  deleteCard(CardId: number): number {
+    this.cardsService.delete(CardId).subscribe(
       (res) => {
         this.cards = this.cards.filter(function (item) {
           return item['CardID'];
         });
       }
     );
-}
 
+    return 0; 
+  }
 
-  // droppedIntoCan(event: CdkDragDrop<string[]>) { 
-//     let title = this.removeCardFromCards(event.container.data, event.currentIndex);
+  /**
+   * Delete Item Function - Associated w/ the trash in 
+   * @param event 
+   */
+  droppedIntoCan(event: CdkDragDrop<string[]>) { 
+    let card: Card = this.removeCardFromCards(event.previousContainer.data, event.previousIndex);
 
-//     this.removeTitleFromArray(this.getListNameFromDropContainerId(event), title);
-//   }
+    if (card.CardID)
+      this.deleteCard(card.CardID);
+    
+    this.removeTitleFromArray(this.getListNameFromPrevContainerId(event), card.Title);
 
-//   /**
-//    * Removes the card from cards list and returns its title 
-//    * @param list 
-//    * @param index 
-//    */
-//   removeCardFromCards(list: string[], index: number): string { 
-//     let title: string = list[index];
-//     let j: number = -1; 
-//     for(let i = 0; i < this.cards.length; i++) { 
-//       if (this.cards[i].Title === title) { 
-//         j = i; 
-//       }
-//     }
+  }
 
-//     this.cards.splice(j, 1);
-//     return title;
-//   }
+  /**
+   * Removes the card from cards list and returns its title 
+   * @param list 
+   * @param index 
+   */
+  removeCardFromCards(list: string[], index: number): Card { 
+    let title: string = list[index];
+    let j: number = -1; 
+    for(let i = 0; i < this.cards.length; i++) {
+      if (this.cards[i].Title === title) { 
+        j = i; 
+      }
+    }
 
-//   removeTitleFromArray(columnName: string, title: string) { 
-//     switch(columnName) { 
-//       case this.columns[0]:
-//         this.removeItemFromArray(this.ideas, title);
-//         break;
-//       case this.columns[1]:
-//         this.removeItemFromArray(this.todos, title);
-//         break;
-//       case this.columns[2]:
-//         this.removeItemFromArray(this.done, title);
-//         break;
-//     }
-//   }
+    let card: Card = this.cards.splice(j, 1)[0];
+    return card;
+  }
 
-//   removeItemFromArray(array: any[], item: any) { 
-//     let j: number = 0; 
-//     for (let i = 0; i < array.length; i++) { 
-//       if (array[i] === item) 
-//         j = i; 
-//         break;
-//     }
+  removeTitleFromArray(columnName: string, title: string) { 
+    switch(columnName) { 
+      case this.columns[0]:
+        this.removeItemFromArray(this.ideas, title);
+        break;
+      case this.columns[1]:
+        this.removeItemFromArray(this.todos, title);
+        break;
+      case this.columns[2]:
+        this.removeItemFromArray(this.done, title);
+        break;
+    }
+  }
 
-//     array.splice(j, 1);
-//   }
+  removeItemFromArray(array: string[], item: string): string { 
+    let j: number = 0; 
+
+    console.log(array);
+    for (let i = 0; i < array.length; i++) { 
+      if (array[i] === item) {
+        j = i; 
+        break;
+      }
+    }
+
+    return array.splice(j, 1)[0];
+  }
 
 }
 

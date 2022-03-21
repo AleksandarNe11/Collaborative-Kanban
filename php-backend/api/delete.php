@@ -3,7 +3,7 @@
 require 'connect.php';
 
 // Extract, validate and sanitize the id.
-$id = ($_GET['CardID'] !== null && (int)$_GET['CardID'] > 0)? mysqli_real_escape_string($con, (int)$_GET['CardID']) : false;
+$id = ($_GET['id'] !== null && (int)$_GET['id'] > 0)? mysqli_real_escape_string($con, (int)$_GET['id']) : false;
 
 if(!$id)
 {
@@ -11,7 +11,7 @@ if(!$id)
 }
 
 // Delete.
-$sql = "DELETE FROM `cards` WHERE `CardID` ={$id}";
+$sql = "DELETE FROM `cards` WHERE `CardID` = {$id}";
 
 if(mysqli_query($con, $sql))
 {
