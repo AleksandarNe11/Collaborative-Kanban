@@ -35,21 +35,16 @@ export class BoardPageComponent implements OnInit {
 
   card: Card = {
     BoardID: this.boardId, 
-    Title: "Super Sex-y idea", 
-    ColumnName: "TODO"
+    Title: "Empty", 
+    ColumnName: "IDEAS"
   };
 
-  cards: Card[] = [{
-    BoardID: this.boardId, 
-    CardID: 1,  
-    Title: "Sexy Card", 
-    ColumnName: "Ideas"
-  }];
+  cards: Card[] = [];
 
 
   columns = ["IDEAS", "TODO", "DONE"]
 
-  ideas: string[] = ["Sexy Card"];
+  ideas: string[] = [];
   todos: string[] = [];
   done: string[] = [];
   trash: string[] = [];
