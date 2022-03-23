@@ -23,7 +23,7 @@ if(isset($postdata) && !empty($postdata))
   // if ($request == null){
   //   fwrite($file, "null");
   // }else{
-  //   fwrite($file, $request->{"data"}->{"columnName"});
+  //   fwrite($file, $request->{"data"}->{"BoardID"});
   // }
   // fclose($file);
   // ----------------------------------------------------------------------------
@@ -35,12 +35,12 @@ if(isset($postdata) && !empty($postdata))
     // -------------- SQL Prepared Statements --------------
 
     $sqlInsert = $con->prepare("INSERT INTO `kanban_db`.`Cards` (`BoardID`, `Title`, `ColumnName`) VALUES ( ?, ?, ?)");
-    $sqlInsert->bind_param("iss", $request->{"data"}->{"boardId"}, $request->{"data"}->{"title"}, $request->{"data"}->{"columnName"} );
+    $sqlInsert->bind_param("iss", $request->{"data"}->{"BoardID"}, $request->{"data"}->{"Title"}, $request->{"data"}->{"ColumnName"} );
 
     if($sqlInsert->execute()){
     
       $sql = $con->prepare("SELECT * FROM CARDS WHERE Title = ? AND ColumnName = ?");
-      $sql->bind_param("ss", $request->{"data"}->{"title"}, $request->{"data"}->{"columnName"});
+      $sql->bind_param("ss", $request->{"data"}->{"Title"}, $request->{"data"}->{"ColumnName"});
 
       if($sql->execute()){
       
@@ -52,6 +52,7 @@ if(isset($postdata) && !empty($postdata))
 
           // add the data to the varible that will be returned to the http request
           $row = mysqli_fetch_assoc($result);
+
           $cards[$cr][CARD_ID] = $row[CARD_ID];
           $cards[$cr][BOARD_ID] = $row[BOARD_ID];
           $cards[$cr][TITLE] = $row[TITLE];

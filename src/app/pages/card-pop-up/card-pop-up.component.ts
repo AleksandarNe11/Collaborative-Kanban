@@ -22,7 +22,10 @@ export class CardPopUpComponent implements OnInit {
   @Input()
   public title: string = "";
 
-  @Output() titleChange = new EventEmitter<string>(); 
+  @Output() titleChange = new EventEmitter<string[]>(); 
+
+  // @Output() titleChange = new EventEmitter<string>(); 
+
 
   closeResult: string = "";
 
@@ -41,8 +44,18 @@ export class CardPopUpComponent implements OnInit {
     });
   }
 
+  // submit() { 
+  //   this.titleChange.emit(this.title);
+  //   this.title = "";
+  //   this.modalService.dismissAll();
+  // }
+
   submit() { 
-    this.titleChange.emit(this.title);
+
+    let str_array: string[] = [this.title, this.column]
+    this.titleChange.emit(str_array);
+
+    this.title = "";
     this.modalService.dismissAll();
   }
 
