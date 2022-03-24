@@ -13,3 +13,10 @@ export class LandingpageComponent implements OnInit {
   }
 
 }
+function Join_Room() {
+  let el = document.getElementById("boardID")!;
+  var ID = document.getElementById("ID");
+  let rm = ID?.innerText;
+  console.log("TEST");
+  //document.getElementById("JOIN").onclick = "location.href='//localhost:4200/${ID}'";
+}
