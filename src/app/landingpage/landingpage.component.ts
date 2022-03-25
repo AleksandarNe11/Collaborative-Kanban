@@ -35,7 +35,6 @@ export class LandingpageComponent implements OnInit {
         this.route.navigate(["board"], {queryParams: {boardId: this.boardId}});
       }
     )
-  
+ 
   }
-
 }
