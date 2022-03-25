@@ -9,7 +9,7 @@
 
     <div class="board">
         <div class="board-bar">
-            <p class="board-name">Board Name</p>
+            <p [(ngModel)]="boardName" class="board-name" name="fieldName" ngDefaultControl>Board Name: {{boardName}}</p>
         </div>
 
         <div class="board-wrapper">

@@ -1,4 +1,5 @@
 import { LandingPageService } from './../landing-page.service';
+import { CardsServiceService } from '../cards-service.service';
 import { Component, Input, OnInit } from '@angular/core';
 import {RouterModule, Router, } from '@angular/router';
 
@@ -9,7 +10,11 @@ import {RouterModule, Router, } from '@angular/router';
 })
 export class LandingpageComponent implements OnInit {
 
-  constructor(private route: Router, private landingService: LandingPageService) { }
+  constructor(
+    private route: Router, 
+    private landingService: LandingPageService, 
+    private cardService: CardsServiceService
+    ) { }
   
   @Input()
   boardName: string; 
@@ -19,20 +24,39 @@ export class LandingpageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  join() {
-    let ID = document.getElementById("boardID");
-    let rm = ID?.innerText;
-    console.log("TEST");
-    //document.getElementById("JOIN").onclick = "location.href='//localhost:4200/${ID}'";
-  }
-
-  passBoardIDandNavigate() { 
+  joinPassBoardIDandNavigate() { 
     console.log("this.boradname:" + this.boardName);
     this.landingService.getBoardID(this.boardName).subscribe(
       (res) => { 
-        this.boardId = res[0]["BoardID"];
 
-        this.route.navigate(["board"], {queryParams: {boardId: this.boardId}});
+        if (res[0]){
+          this.boardId = res[0]["BoardID"];
+          this.cardService.setBoardName(this.boardName); 
+
+          this.route.navigate(["board"], {queryParams: {boardId: this.boardId}});
+        } else{
+          alert("Board Not Found!!");
+        }
+      }
+    )
+  
+  }
+
+  createPassBoardIDandNavigate() { 
+    console.log("this.boradname:" + this.boardName);
+    this.landingService.createBoard(this.boardName).subscribe(
+      (res) => { 
+
+        console.log(res[0]);
+
+        if (res[0]){
+          this.boardId = res[0]["BoardID"];
+          this.cardService.setBoardName(this.boardName); 
+
+          this.route.navigate(["board"], {queryParams: {boardId: this.boardId}});
+        } else{
+          alert("Board Already Exists!!");
+        }
       }
     )
  
