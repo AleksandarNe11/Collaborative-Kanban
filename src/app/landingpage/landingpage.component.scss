@@ -1,0 +1,22 @@
+body {
+    width: 100em;
+    margin: 0 auto;
+    font-family: 'Arial Bold', sans-serif;
+    background-image: url('https://doy2mn9upadnk.cloudfront.net/uploads/default/original/4X/6/4/0/64002c643ab06b06129b99c94ed4ba8d11bd0bcb.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translate(-5%, -50%);
+    transform: translate(-50%, -50%);
+}
+.content {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
