@@ -10,18 +10,16 @@ export class LandingPageService {
 
   constructor(private http: HttpClient) { }
 
-  baseURL = 'http://localhost:80/api'; 
+  baseURL = 'http://localhost:88/api'; 
 
   getBoardID(BoardName: string) { 
     // return this.http.get(`${this.baseURL}/list/${BoardID}`)
 
-    return this.http.post(`${this.baseURL}/list.php`, {data: BoardName})
+    return this.http.post(`${this.baseURL}/getBoardID.php`, {data: BoardName})
       .pipe(
         map((res: any) => { 
           return res['data'];
         })
       )
   }
-
-  
 }

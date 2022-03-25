@@ -18,6 +18,7 @@ export class CardsServiceService {
 
      // return this.http.get(`${this.baseURL}/list.php`)
     return this.http.post(`${this.baseURL}/list.php`, {data: BoardID})
+
       .pipe(
         map((res: any) => { 
           return res['data'];
