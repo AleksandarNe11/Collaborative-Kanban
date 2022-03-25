@@ -2,10 +2,8 @@ import { CardsServiceService } from './../../cards-service.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
 
 
 import { Card } from './cards';
@@ -27,10 +25,10 @@ export class BoardPageComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    // const id: number = this.route.snapshot.paramMap.get('boardID');
-    // if (id)
-    //   this.boardId = id; 
-    this.getCards();
+    this.route.params.subscribe(params => { 
+      this.boardId = params['boardId']; 
+      this.getCards();
+    })
   }
 
   closeResult: string = "";

@@ -15,12 +15,13 @@ export class LandingPageService {
   getBoardID(BoardName: string) { 
     // return this.http.get(`${this.baseURL}/list/${BoardID}`)
 
-    return this.http.get(`${this.baseURL}/list.php`)
-
+    return this.http.post(`${this.baseURL}/list.php`, {data: BoardName})
       .pipe(
         map((res: any) => { 
           return res['data'];
         })
       )
   }
+
+  
 }

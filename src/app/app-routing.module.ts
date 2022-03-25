@@ -5,15 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path: "", component: LandingpageComponent},
-  {path: "01", component: BoardPageComponent},
-  {path: "02", component: BoardPageComponent},
-  {path: "03", component: BoardPageComponent},
-  {path: "04", component: BoardPageComponent},
-  {path: "05", component: BoardPageComponent},
-  {path: "06", component: BoardPageComponent},
-  {path: "07", component: BoardPageComponent},
-  {path: "08", component: BoardPageComponent},
-  {path: "09", component: BoardPageComponent},
+  {path: "board", component: BoardPageComponent},
 ];
 
 @NgModule({
