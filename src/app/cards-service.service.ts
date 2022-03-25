@@ -9,10 +9,18 @@ import { map } from 'rxjs';
 })
 export class CardsServiceService {
 
-   baseURL = 'http://localhost:88/api'; 
-
+  baseURL = 'http://localhost:88/api'; 
+  boardName = "";
 
   constructor(private http: HttpClient) { }
+
+  setBoardName(name: string) { 
+    this.boardName = name;
+  }
+
+  getBoardName(): string { 
+    return this.boardName; 
+  }
 
   getAll(BoardID: number) { 
 
