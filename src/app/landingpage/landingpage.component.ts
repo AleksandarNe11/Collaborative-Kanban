@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { join } from 'path';
+
+join(); {
+  let ID = document.getElementById("boardID")!;
+  let rm = ID?.innerText;
+  console.log("TEST");
+  //document.getElementById("JOIN").onclick = "location.href='//localhost:4200/${ID}'";
+}
 
 @Component({
   selector: 'app-landingpage',
