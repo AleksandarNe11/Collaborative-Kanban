@@ -21,7 +21,7 @@
     .content {
         position: absolute;
         left: 50%;
-        top: 50%;
+        top: 60%;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
 }
@@ -31,12 +31,15 @@
 
 <div class="container">
 <h1 style="font-size: 70px;font-family:'Arial Bold';color:black;text-align:center;">Collaborative Kanban</h1>
-<p style="font-size: 40px;font-family:'Arial Bold';color:black;text-align:center;"> small sentence</p>
+<p style="font-size: 40px;font-family:'Arial Bold';color:black;text-align:center;"> Create a new board or join other boards.</p>
+
 </div>
 <div class="content">
-<button onclick="location.href='//localhost:4200/Board'" style="border-radius:5px;border-color:black;background-color:transparent;width:100px;height:50px;" type="submit">Open</button>
+<input type="text" id="boardID" name="ID" placeholder="Enter a board ID here" size=21.95px><br><br>
+<button onclick="location.href='//localhost:4200/Board'" style="border-radius:5px;border-color:black;background-color:transparent;width:100px;height:50px;" type="submit">New Board</button>
+&nbsp;
+<button onclick="location.href='//localhost:4200/Board'" style="border-radius:5px;border-color:black;background-color:transparent;width:100px;height:50px;" type="submit">Join Board</button>
 </div>
-
 
 </body>
 </html>
