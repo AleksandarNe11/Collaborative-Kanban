@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, ObservableLike } from 'rxjs';
-import { switchMap } from 'rxjs';
+import { LandingPageService } from './../landing-page.service';
+import { Component, Input, OnInit } from '@angular/core';
+import {RouterModule, Router, } from '@angular/router';
 
 @Component({
   selector: 'app-landingpage',
@@ -10,10 +9,12 @@ import { switchMap } from 'rxjs';
 })
 export class LandingpageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: Router, private landingService: LandingPageService) { }
+  
+  @Input()
+  boardName: string; 
 
-  boardIdObservable$: Observable<ParamMap>;
-  boardId: number; 
+  boardId: number = 1; 
 
   ngOnInit(): void {
   }
@@ -26,12 +27,14 @@ export class LandingpageComponent implements OnInit {
   }
 
   passBoardIDandNavigate() { 
-    // this.boardIdObservable$ = this.route.paramMap.pipe(
-    //   switchMap(params => { 
-    //     this.boardId = Number(params.get('boardId'))
-    //   })
-    // )
+    this.landingService.getBoardID(this.boardName).subscribe(
+      (res) => { 
+        this.boardId = res;
+
+        // NEED TO PUT THE ROUTE IN HERE 
+      }
+    )
+    this.route.navigate(["board"], {queryParams: {boardId: this.boardId}});
   }
-  
 
 }
