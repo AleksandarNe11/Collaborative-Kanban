@@ -4,6 +4,9 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
+
 
 import { Card } from './cards';
 import { NgForm } from '@angular/forms';
@@ -19,9 +22,14 @@ export class BoardPageComponent implements OnInit {
 
   constructor(
     private cardsService: CardsServiceService, 
+    private route: ActivatedRoute, 
+    private router: Router
     ) {}
 
   ngOnInit(): void {
+    // const id: number = this.route.snapshot.paramMap.get('boardID');
+    // if (id)
+    //   this.boardId = id; 
     this.getCards();
   }
 
