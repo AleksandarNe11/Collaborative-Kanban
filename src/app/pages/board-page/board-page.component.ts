@@ -25,7 +25,10 @@ export class BoardPageComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => { 
+    this.route.params.subscribe(params => {
+      
+      console.log("params");
+      console.log(params);
       this.boardId = params['boardId']; 
       this.getCards();
     })
