@@ -30,11 +30,9 @@ export class LandingpageComponent implements OnInit {
     this.landingService.getBoardID(this.boardName).subscribe(
       (res) => { 
         this.boardId = res;
-
-        // NEED TO PUT THE ROUTE IN HERE 
+        this.route.navigate(["board"], {queryParams: {boardId: this.boardId}});
+        // NEED TO PUT THE ROUTE IN HERE
       }
     )
-    this.route.navigate(["board"], {queryParams: {boardId: this.boardId}});
   }
-
 }
