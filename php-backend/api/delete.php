@@ -2,16 +2,20 @@
 
 require 'connect.php';
 
-// Extract, validate and sanitize the id.
-$id = ($_GET['id'] !== null && (int)$_GET['id'] > 0)? mysqli_real_escape_string($con, (int)$_GET['id']) : false;
+echo "Hello";
 
-if(!$id)
+
+$cardid = (int) mysqli_real_escape_string($con, (int)$_GET['id']);
+
+echo "  CardID: " . $cardid;
+
+if(!$cardid)
 {
   return http_response_code(400);
 }
 
 // Delete.
-$sql = "DELETE FROM `cards` WHERE `CardID` = {$id}";
+$sql = "DELETE FROM `cards` WHERE `CardID` = {$cardid}";
 
 if(mysqli_query($con, $sql))
 {

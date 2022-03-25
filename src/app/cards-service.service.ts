@@ -9,16 +9,15 @@ import { map } from 'rxjs';
 })
 export class CardsServiceService {
 
-   baseURL = 'http://localhost:80/api'; 
+   baseURL = 'http://localhost:88/api'; 
 
 
   constructor(private http: HttpClient) { }
 
   getAll(BoardID: number) { 
-    // return this.http.get(`${this.baseURL}/list/${BoardID}`)
 
-    return this.http.get(`${this.baseURL}/list.php`)
-
+     // return this.http.get(`${this.baseURL}/list.php`)
+    return this.http.post(`${this.baseURL}/list.php`, {data: BoardID})
       .pipe(
         map((res: any) => { 
           return res['data'];
