@@ -25,7 +25,7 @@ export class LandingpageComponent implements OnInit {
   }
 
   joinPassBoardIDandNavigate() { 
-    console.log("this.boradname:" + this.boardName);
+    // console.log("this.boradname:" + this.boardName);
     this.landingService.getBoardID(this.boardName).subscribe(
       (res) => { 
 
@@ -43,11 +43,11 @@ export class LandingpageComponent implements OnInit {
   }
 
   createPassBoardIDandNavigate() { 
-    console.log("this.boradname:" + this.boardName);
+    // console.log("this.boradname:" + this.boardName);
     this.landingService.createBoard(this.boardName).subscribe(
       (res) => { 
 
-        console.log(res[0]);
+        // console.log(res[0]);
 
         if (res[0]){
           this.boardId = res[0]["BoardID"];
