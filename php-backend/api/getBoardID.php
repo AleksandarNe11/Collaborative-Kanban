@@ -20,6 +20,7 @@ if(isset($postdata) && !empty($postdata))
   if($request != null){
 
     // -------------- SQL Prepared Statements --------------
+    
     $cards = [];
     $sql = $con->prepare("SELECT BoardID FROM BOARDS WHERE BoardName = ?");
     $sql->bind_param("s", $request->{"data"});

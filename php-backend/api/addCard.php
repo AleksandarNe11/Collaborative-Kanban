@@ -18,17 +18,6 @@ if(isset($postdata) && !empty($postdata))
   // Extract the data.
   $request = json_decode($postdata);
 
-  // --------- Used for test, adds a place to put output when file runs ---------
-  // $file = fopen("output.txt", "w");
-  // if ($request == null){
-  //   fwrite($file, "null");
-  // }else{
-  //   fwrite($file, $request->{"data"}->{"BoardID"});
-  // }
-  // fclose($file);
-  // ----------------------------------------------------------------------------
-	   
-
   // Store.
   if($request != null){
 

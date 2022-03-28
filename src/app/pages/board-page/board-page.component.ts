@@ -28,13 +28,13 @@ export class BoardPageComponent implements OnInit {
     this.boardName = this.cardsService.getBoardName();
     this.route.queryParams.subscribe(params => {
       
-      console.log("cards: ", this.cards);
+      // console.log("cards: ", this.cards);
       this.boardId = params['boardId']; 
       this.card.BoardID = this.boardId;
       this.getCards();
 
     })
-    console.log("bID " + this.boardId);
+    // console.log("bID " + this.boardId);
   }
 
   closeResult: string = "";
@@ -43,7 +43,7 @@ export class BoardPageComponent implements OnInit {
   boardName: string = "";
 
   open(): void { 
-    console.log("Opened Modal?");
+    // console.log("Opened Modal?");
   }
 
   card: Card = {
@@ -92,19 +92,19 @@ export class BoardPageComponent implements OnInit {
 
     let index: number = parseInt(strArray[3])%4;
 
-    console.log("index: " + index);
+    // console.log("index: " + index);
   
     return this.columns[index];
   }
 
   getListNameFromPrevContainerId(event: CdkDragDrop<string[]>): string { 
     let id: string = event.previousContainer.id; 
-    console.log("prevContainerId", id);
+    // console.log("prevContainerId", id);
     let strArray: string[] = id.split("-");
 
     let index: number = parseInt(strArray[3])%4;
 
-    console.log("index: " + index);
+    // console.log("index: " + index);
 
     return this.columns[index];
   }
@@ -261,7 +261,7 @@ export class BoardPageComponent implements OnInit {
   removeItemFromArray(array: string[], item: string): string { 
     let j: number = 0; 
 
-    console.log(array);
+    // console.log(array);
     for (let i = 0; i < array.length; i++) { 
       if (array[i] === item) {
         j = i; 
