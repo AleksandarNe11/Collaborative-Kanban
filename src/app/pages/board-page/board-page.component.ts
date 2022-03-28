@@ -25,21 +25,25 @@ export class BoardPageComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.boardName = this.cardsService.getBoardName();
+    this.route.queryParams.subscribe(params => {
       
-      console.log("params");
-      console.log(params);
+      // console.log("cards: ", this.cards);
       this.boardId = params['boardId']; 
+      this.card.BoardID = this.boardId;
       this.getCards();
+
     })
+    // console.log("bID " + this.boardId);
   }
 
   closeResult: string = "";
 
   boardId: number = 1;
+  boardName: string = "";
 
   open(): void { 
-    console.log("Opened Modal?");
+    // console.log("Opened Modal?");
   }
 
   card: Card = {
@@ -85,16 +89,24 @@ export class BoardPageComponent implements OnInit {
     let id: string = event.container.id; 
 
     let strArray: string[] = id.split("-");
+
+    let index: number = parseInt(strArray[3])%4;
+
+    // console.log("index: " + index);
   
-    return this.columns[parseInt(strArray[3])];
+    return this.columns[index];
   }
 
   getListNameFromPrevContainerId(event: CdkDragDrop<string[]>): string { 
     let id: string = event.previousContainer.id; 
-
+    // console.log("prevContainerId", id);
     let strArray: string[] = id.split("-");
-  
-    return this.columns[parseInt(strArray[3])];
+
+    let index: number = parseInt(strArray[3])%4;
+
+    // console.log("index: " + index);
+
+    return this.columns[index];
   }
 
   /**
@@ -211,7 +223,6 @@ export class BoardPageComponent implements OnInit {
       this.deleteCard(card.CardID);
     
     this.removeTitleFromArray(this.getListNameFromPrevContainerId(event), card.Title);
-
   }
 
   /**
@@ -233,6 +244,7 @@ export class BoardPageComponent implements OnInit {
   }
 
   removeTitleFromArray(columnName: string, title: string) { 
+    // console.log("columnName: ", columnName); 
     switch(columnName) { 
       case this.columns[0]:
         this.removeItemFromArray(this.ideas, title);
@@ -249,7 +261,7 @@ export class BoardPageComponent implements OnInit {
   removeItemFromArray(array: string[], item: string): string { 
     let j: number = 0; 
 
-    console.log(array);
+    // console.log(array);
     for (let i = 0; i < array.length; i++) { 
       if (array[i] === item) {
         j = i; 

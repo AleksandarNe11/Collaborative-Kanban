@@ -16,22 +16,12 @@ if(isset($postdata) && !empty($postdata))
   // Extract the data.
   $request = json_decode($postdata);
 
-  // --------- Used for test, adds a place to put output when file runs ---------
-  // $file = fopen("output.txt", "w");
-  // if ($request == null){
-  //   fwrite($file, "null");
-  // }else{
-  //   fwrite($file, $request->{"data"}->{"BoardID"});
-  // }
-  // fclose($file);
-  // ----------------------------------------------------------------------------
-	   
-
   // Store.
   if($request != null){
 
     // -------------- SQL Prepared Statements --------------
     
+    $cards = [];
     $sql = $con->prepare("SELECT BoardID FROM BOARDS WHERE BoardName = ?");
     $sql->bind_param("s", $request->{"data"});
 
@@ -46,7 +36,7 @@ if(isset($postdata) && !empty($postdata))
             // add the data to the varible that will be returned to the http request
             $row = mysqli_fetch_assoc($result);
 
-            $cards[$cr][BOARD_ID] = $row;
+            $cards[$cr] = $row;
 
             // return data
             echo json_encode(['data'=>$cards]);

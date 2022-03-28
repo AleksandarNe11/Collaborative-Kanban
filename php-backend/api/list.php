@@ -15,24 +15,9 @@ $postdata = file_get_contents("php://input");
 if(isset($postdata) && !empty($postdata)){
 
     // Extract the data.
-    $request = json_decode($postdata);
-
-    
-  // --------- Used for test, adds a place to put output when file runs ---------
-    // $file = fopen("output.txt", "w");
-    // if ($request == null){
-    //   fwrite($file, "null");
-    // }else{
-    //   fwrite($file, $request->{"data"});
-    // }
-    // fclose($file);
-  // ----------------------------------------------------------------------------
-	   
+    $request = json_decode($postdata);   
 
     $cards = []; 
-    // $sql = "SELECT * FROM CARDS WHERE BoardID = 1"; 
-    // $sql = "SELECT * FROM CARDS";
-
     // -------------- SQL Prepared Statements --------------
 
     $sqlSelect = $con->prepare("SELECT * FROM CARDS WHERE BoardID = ?");

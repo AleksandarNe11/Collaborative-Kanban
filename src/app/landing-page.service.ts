@@ -22,4 +22,15 @@ export class LandingPageService {
         })
       )
   }
+
+  createBoard(BoardName: string) { 
+    // return this.http.get(`${this.baseURL}/list/${BoardID}`)
+
+    return this.http.post(`${this.baseURL}/addBoard.php`, {data: BoardName})
+      .pipe(
+        map((res: any) => { 
+          return res['data'];
+        })
+      )
+  }
 }
